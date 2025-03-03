@@ -3,10 +3,13 @@ let img
 function initDrag(){
     console.log('create');
     img=createImageElement();
-
     img.addEventListener('mousedown',startDragging);
     document.addEventListener('mousemove',handleDragging);
+
+    img.addEventListener('mouseup',stopDragging);
     document.addEventListener('mouseup',stopDragging);
+    document.addEventListener('mouseleave',stopDragging);
+    document.addEventListener('blur',stopDragging);
 }
 
 function createImageElement(){
@@ -21,9 +24,10 @@ function createImageElement(){
 
 function startDragging(e){
     isDragging=true;
+    e.preventDefault();
     const rect=img.getBoundingClientRect();
-    const currentX=rect.right;
-    const currentY=rect.bottom;
+    const currentX=rect.left;
+    const currentY=rect.top;
     const offsetX=e.clientX-currentX;
     const offsetY=e.clientY-currentY;
 
@@ -44,6 +48,8 @@ function handleDragging(e){
 
 function stopDragging(){
     isDragging=false;
+    img.dataset.offsetX='';
+    img.dataset.offsetY='';
 }
 
 function applyBoundaryConstraints(x,y){
