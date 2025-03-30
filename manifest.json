@@ -2,6 +2,10 @@
     "manifest_version":3,
     "name":"AKatze",
     "version":"1.0",
+    "description":"砂猫浏览器宠物",
+    "action":{
+        "default_icon":"data/icon.png"
+    },
     "content_scripts":[
         {
             "matches":["<all_urls>"],
@@ -11,8 +15,7 @@
     ],
     "web_accessible_resources":[{
         "resources":[
-            "data/3.gif",
-            "data/3.png"
+            "data/*"
         ],
         "matches":["<all_urls>"]
     }]
