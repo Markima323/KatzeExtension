@@ -1,6 +1,7 @@
 .normalCon{
     position:fixed;
-    height:160px;
+    width:208px;
+    height:206px;
     bottom:50px;
     right:20px;
     z-index:9998;
