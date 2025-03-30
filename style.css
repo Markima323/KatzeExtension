@@ -1,6 +1,5 @@
 .normalCon{
     position:fixed;
-    width: 188px;
     height:160px;
     bottom:50px;
     right:20px;
@@ -15,13 +14,12 @@
     width: 100px;
 }
 .normalDialog{
-    position:relative;
+    display:block;
     font-size:10px;
     z-index:9997;
-    width: 150px;
-    padding:0px 15px;
-    color:rgb(22,106,116);
-    border:4px solid rgb(136, 255, 182);
-    border-radius: 12px;
-    background-color:rgb(255,249,229);
+    text-align:center;
+    width: 188px;
+    margin:0 auto;
+    padding:25px 10px 15px 10px;
+    color:rgb(0, 43, 46);
 }

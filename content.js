@@ -34,6 +34,7 @@ function createElement(){
     //create dialog
     const dialog=document.createElement('div');
     dialog.className='normalDialog';
+    dialog.style.background=`url(${chrome.runtime.getURL("data/dialog.png")}) no-repeat center/contain`;
     dialog.style.display='none';
     container.appendChild(dialog);
 
