@@ -1,9 +1,8 @@
 let isDragging = false;
 let container;
-//TODO 无法拖拽bug
 const chat=[
     "所有，或一无所有。",
-    "朋友，用太久设备可不好，记得休息哦。",
+    "朋友，用太久设备可不好，要记得休息呀。",//二行开始
     "有点无聊呢，要不要和我...",
     "筹码掉了，哈哈，我也有失手的时候。其实是光顾着看朋友，分心啦。",
     "又是头奖，理所应当的结果。",
@@ -13,14 +12,13 @@ const chat=[
     "喵~",
     "朋友喜欢吃什么？我去订餐厅。",
     "匹诺康尼有家不错的店，想带朋友去，也许朋友不感兴趣...算啦。",
-    "给朋友买了礼物，猜猜看，是什么~",
+    "给朋友买了礼物，猜猜看，是什么~",//一行极限
     "我是不是说了太多，打扰到朋友了？抱歉，因为一见到你，就忍不住分享。"
 ];
 
 function init(){
     createElement();
     initDrag();
-    talk();
 };
 function createElement(){
     //create container
@@ -37,7 +35,7 @@ function createElement(){
     dialog.style.background=`url(${chrome.runtime.getURL("data/dialog.png")}) no-repeat center/contain`;
     dialog.style.display='none';
     container.appendChild(dialog);
-
+    
     document.body.appendChild(container);
 };
 //拖拽开始
@@ -60,7 +58,7 @@ function startDragging(e){
     const currentY=rect.top;
     const offsetX=e.clientX-currentX;
     const offsetY=e.clientY-currentY;
-
+    
     container.dataset.offsetX=offsetX;
     container.dataset.offsetY=offsetY;
 };
@@ -69,9 +67,9 @@ function handleDragging(e){
     console.log("handle");
     const newX=e.clientX-parseFloat(container.dataset.offsetX);
     const newY=e.clientY-parseFloat(container.dataset.offsetY);
-
+    
     const [clampedX,clampedY]=applyBoundaryConstraints(newX,newY);
-
+    
     container.style.left=clampedX+'px';
     container.style.top=clampedY+'px';
 };
@@ -95,10 +93,11 @@ function applyBoundaryConstraints(x,y){
 function talk(){
     let place=document.querySelector(".normalDialog")
     place.style.display='block';
-//TODO创建对话框，将对话加入+设置时间，消除和更换
     let randomNum=Math.floor(Math.random()*chat.length);
     place.innerHTML=`<p style="text-align:center">${chat[randomNum]}</p>`
+    setTimeout(()=>{place.style.display='none'},30000);
 }
 //对话结束
 console.log('init');
 init();
+const Timer=setInterval(talk,300000);

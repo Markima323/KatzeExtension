@@ -1,6 +1,6 @@
 .normalCon{
     position:fixed;
-    width:208px;
+    width:228px;
     height:206px;
     bottom:50px;
     right:20px;
@@ -21,6 +21,6 @@
     text-align:center;
     width: 188px;
     margin:0 auto;
-    padding:25px 10px 15px 10px;
+    padding:25px 17px 15px 25px;
     color:rgb(0, 43, 46);
 }
