@@ -1,8 +1,9 @@
 let isDragging = false;
 let container;
 const chat=[
-    "所有，或一无所有。",
+    "给朋友买了礼物，猜猜看，是什么~",//一行极限
     "朋友，用太久设备可不好，要记得休息呀。",//二行开始
+    "所有，或一无所有。",
     "有点无聊呢，要不要和我...",
     "筹码掉了，哈哈，我也有失手的时候。其实是光顾着看朋友，分心啦。",
     "又是头奖，理所应当的结果。",
@@ -12,8 +13,9 @@ const chat=[
     "喵~",
     "朋友喜欢吃什么？我去订餐厅。",
     "匹诺康尼有家不错的店，想带朋友去，也许朋友不感兴趣...算啦。",
-    "给朋友买了礼物，猜猜看，是什么~",//一行极限
-    "我是不是说了太多，打扰到朋友了？抱歉，因为一见到你，就忍不住分享。"
+    "我是不是说了太多，打扰到朋友了？抱歉，因为一见到你，就忍不住分享。",
+    "不知道你喜欢哪种口味的巧克力，只好都买啦。",
+    "喵~喵喵~"
 ];
 
 function init(){
@@ -89,15 +91,49 @@ function applyBoundaryConstraints(x,y){
 };
 //拖拽结束
 
-//对话开始
+//互动开始
+function selectEvent(){
+    let num=Math.random;
+    if(num<=0.095){
+        winGame();
+        //talk();
+    }else{
+        winGame();
+    }
+};
 function talk(){
     let place=document.querySelector(".normalDialog")
     place.style.display='block';
     let randomNum=Math.floor(Math.random()*chat.length);
     place.innerHTML=`<p style="text-align:center">${chat[randomNum]}</p>`
     setTimeout(()=>{place.style.display='none'},30000);
+};
+function winGame(){
+    let place=document.querySelector(".normalDialog");
+    place.style.display='block';
+    place.innerHTML=`<p style="text-align:center">朋友，我们来玩场游戏吧。如果你赢了，可以问我要任何东西，什么都可以。</p>
+                    <p>
+                        <button class="buttonType agreeBtn">同意</button> 
+                        <button class="buttonType refuseBtn">拒绝</button>
+                    </p>`
+    document.querySelector(".agreeBtn").addEventListener("click",agree);
+    document.querySelector(".refuseBtn").addEventListener("click",refuse);
+    setTimeout(()=>{refuse();},30000);
 }
-//对话结束
+function agree(){
+    console.log("agree");
+    let place1=document.querySelector(".normalDialog");
+    place1.innerHTML=`<p>好呀，那我们开始吧！</p>`
+    //TODO加入投骰子
+};
+function refuse(){
+    console.log("refuse");
+    let place2=document.querySelector(".normalDialog");
+    place2.innerHTML=`<p style="text-align:center">喔，可惜了，我还以为你会喜欢呢。算啦，也不是什么特别重要的事。</p>`
+    setTimeout(()=>{place2.style.display='none'},30000);
+};
+//互动结束
 console.log('init');
 init();
-const Timer=setInterval(talk,300000);
+//const Timer=setInterval(selectEvent,300000);
+const Timer=setInterval(selectEvent,1000);
